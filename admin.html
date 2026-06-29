@@ -1,0 +1,353 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Admin Dashboard · Baby Cruzate</title>
+<style>
+  :root{
+    --blue:#7aaecc;--blue-light:#ddeef7;--blue-mid:#a8cfe0;
+    --beige:#f5f0e8;--beige-mid:#e8dece;--beige-dark:#c9b99a;
+    --brown:#8c7560;--brown-dark:#5c4a38;
+    --gray:#9a9a9a;--gray-light:#f2f2f2;--gray-mid:#ddd;
+    --white:#fff;--text:#3a3228;--text-light:#7a6e65;
+    --green:#4a7c59;--green-light:#e8f5e9;
+    --red:#c0392b;--red-light:#fdecea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',sans-serif;background:var(--beige);color:var(--text);min-height:100vh}
+
+  /* LOGIN */
+  .login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--blue-light),var(--beige))}
+  .login-card{background:var(--white);border-radius:20px;padding:40px 36px;max-width:380px;width:92%;box-shadow:0 8px 40px #0002;text-align:center}
+  .login-card h1{font-family:'Georgia',serif;font-size:1.5rem;color:var(--brown-dark);margin-bottom:6px}
+  .login-card p{font-size:.85rem;color:var(--text-light);margin-bottom:24px}
+  .login-card input{width:100%;border:1.5px solid var(--gray-mid);border-radius:10px;padding:12px 16px;font-size:.95rem;color:var(--text);outline:none;background:var(--beige);margin-bottom:14px;transition:border .2s}
+  .login-card input:focus{border-color:var(--blue-mid);background:var(--white)}
+  .btn-login{width:100%;background:var(--brown-dark);color:var(--white);border:none;border-radius:10px;padding:12px;font-size:.95rem;cursor:pointer;font-weight:600;transition:background .2s}
+  .btn-login:hover{background:var(--brown)}
+  .login-err{font-size:.8rem;color:var(--red);margin-top:8px;display:none}
+
+  /* LAYOUT */
+  .dashboard{display:none}
+  nav{background:var(--brown-dark);padding:0 24px}
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:54px}
+  .nav-logo{font-family:'Georgia',serif;font-size:1rem;font-weight:700;color:var(--white)}
+  .nav-logo span{color:var(--blue-mid);font-size:.8rem;font-family:'Segoe UI',sans-serif;margin-left:8px}
+  .btn-logout{background:transparent;border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:8px;padding:5px 14px;font-size:.78rem;cursor:pointer;transition:background .2s}
+  .btn-logout:hover{background:rgba(255,255,255,.1)}
+
+  .content{max-width:1100px;margin:0 auto;padding:32px 24px}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-bottom:32px}
+  .stat-card{background:var(--white);border-radius:14px;padding:20px;box-shadow:0 2px 12px #0001;border-top:3px solid var(--blue-mid)}
+  .stat-card.green{border-color:var(--green)}
+  .stat-card.red{border-color:var(--red)}
+  .stat-card.beige{border-color:var(--beige-dark)}
+  .stat-num{font-size:2rem;font-weight:700;color:var(--brown-dark);font-family:'Georgia',serif}
+  .stat-label{font-size:.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+  /* TABS */
+  .tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+  .tab{background:var(--white);border:1.5px solid var(--gray-mid);border-radius:10px;padding:8px 20px;font-size:.85rem;color:var(--text-light);cursor:pointer;transition:all .2s;font-weight:600}
+  .tab.active{background:var(--brown-dark);color:var(--white);border-color:var(--brown-dark)}
+
+  /* TABLE */
+  .table-wrap{background:var(--white);border-radius:16px;box-shadow:0 2px 12px #0001;overflow:hidden}
+  .table-toolbar{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--gray-mid);flex-wrap:wrap;gap:10px}
+  .table-toolbar h2{font-size:1rem;color:var(--brown-dark)}
+  .toolbar-right{display:flex;gap:8px;align-items:center}
+  .search-input{border:1.5px solid var(--gray-mid);border-radius:8px;padding:6px 12px;font-size:.82rem;outline:none;background:var(--beige);width:200px}
+  .search-input:focus{border-color:var(--blue-mid)}
+  table{width:100%;border-collapse:collapse}
+  th{background:var(--beige);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gray);padding:10px 16px;text-align:left;font-weight:600}
+  td{padding:12px 16px;font-size:.85rem;border-bottom:1px solid var(--gray-light);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#fafaf8}
+  .item-thumb-sm{width:44px;height:44px;object-fit:cover;border-radius:8px;background:var(--blue-light)}
+  .badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.7rem;font-weight:600}
+  .badge-claimed{background:var(--green-light);color:var(--green)}
+  .badge-available{background:var(--gray-light);color:var(--gray)}
+  .badge-must{background:var(--blue-light);color:var(--blue)}
+  .badge-nice{background:var(--beige-mid);color:var(--brown)}
+  .btn-unclaim{background:var(--red-light);color:var(--red);border:none;border-radius:8px;padding:5px 12px;font-size:.75rem;cursor:pointer;font-weight:600;white-space:nowrap;transition:background .2s}
+  .btn-unclaim:hover{background:var(--red);color:#fff}
+  .btn-delete{background:var(--red-light);color:var(--red);border:none;border-radius:8px;padding:5px 12px;font-size:.75rem;cursor:pointer;font-weight:600;transition:background .2s}
+  .btn-delete:hover{background:var(--red);color:#fff}
+  .empty-row td{text-align:center;color:var(--gray);font-style:italic;padding:32px}
+
+  /* TOAST */
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--brown-dark);color:#fff;padding:12px 24px;border-radius:30px;font-size:.85rem;opacity:0;transition:opacity .3s;pointer-events:none;z-index:300;white-space:nowrap}
+  .toast.show{opacity:1}
+
+  .loading{text-align:center;padding:32px;color:var(--gray);font-size:.9rem}
+  .section-hidden{display:none}
+
+  @media(max-width:600px){
+    .stats{grid-template-columns:1fr 1fr}
+    table{font-size:.78rem}
+    td,th{padding:8px 10px}
+    .search-input{width:130px}
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <h1>🔐 Admin Dashboard</h1>
+    <p>Baby Cruzate Registry · Restricted Access</p>
+    <input type="password" id="passInput" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button class="btn-login" onclick="doLogin()">Sign In</button>
+    <div class="login-err" id="loginErr">Incorrect password. Try again.</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">Baby Cruzate Registry <span>ADMIN</span></div>
+      <button class="btn-logout" onclick="doLogout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="content">
+    <!-- STATS -->
+    <div class="stats" id="statsRow">
+      <div class="stat-card"><div class="stat-num" id="statTotal">—</div><div class="stat-label">Total Items</div></div>
+      <div class="stat-card green"><div class="stat-num" id="statClaimed">—</div><div class="stat-label">Claimed</div></div>
+      <div class="stat-card beige"><div class="stat-num" id="statAvail">—</div><div class="stat-label">Available</div></div>
+      <div class="stat-card red"><div class="stat-num" id="statMsgs">—</div><div class="stat-label">Messages</div></div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('registry')">🎁 Registry</div>
+      <div class="tab" onclick="switchTab('claims')">✅ Claims</div>
+      <div class="tab" onclick="switchTab('messages')">💌 Messages</div>
+    </div>
+
+    <!-- REGISTRY TAB -->
+    <div id="tab-registry" class="table-wrap">
+      <div class="table-toolbar">
+        <h2>All Registry Items</h2>
+        <div class="toolbar-right">
+          <input class="search-input" id="searchRegistry" type="text" placeholder="Search items…" oninput="renderRegistry()"/>
+        </div>
+      </div>
+      <div id="registryTable"><div class="loading">Loading…</div></div>
+    </div>
+
+    <!-- CLAIMS TAB -->
+    <div id="tab-claims" class="table-wrap section-hidden">
+      <div class="table-toolbar">
+        <h2>Claimed Items</h2>
+        <div class="toolbar-right">
+          <input class="search-input" id="searchClaims" type="text" placeholder="Search…" oninput="renderClaims()"/>
+        </div>
+      </div>
+      <div id="claimsTable"><div class="loading">Loading…</div></div>
+    </div>
+
+    <!-- MESSAGES TAB -->
+    <div id="tab-messages" class="table-wrap section-hidden">
+      <div class="table-toolbar">
+        <h2>Messages for Baby Cruzate</h2>
+        <div class="toolbar-right">
+          <input class="search-input" id="searchMsgs" type="text" placeholder="Search…" oninput="renderMessages()"/>
+        </div>
+      </div>
+      <div id="msgsTable"><div class="loading">Loading…</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, doc, deleteDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const ADMIN_PASS = "cruzate2026";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBb6go7yvP5elDxs1CNbibekjw7nEEFCOQ",
+  authDomain: "baby-cruzate-registry.firebaseapp.com",
+  projectId: "baby-cruzate-registry",
+  storageBucket: "baby-cruzate-registry.firebasestorage.app",
+  messagingSenderId: "76731983307",
+  appId: "1:76731983307:web:80b4431035785b9079c24e"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const gifts=[
+  {id:"1",name:"Baby 1st Sierra Lightweight One Hand Foldable Stroller",color:"Black",price:"₱2,599",qty:1,priority:"must",img:"https://i.imgur.com/87AEAgN.jpg"},
+  {id:"2",name:"Luna Baby Car Seat (With ICC Certificate)",color:"Grey",price:"₱2,999",qty:1,priority:"must",img:"https://i.imgur.com/ewZdRTq.jpg"},
+  {id:"3",name:"Orashare OCF01Pro Stroller Fan 4000mAh Rechargeable",color:"Rock White",price:"₱719",qty:1,priority:"must",img:"https://i.imgur.com/GOy4VBI.jpg"},
+  {id:"4",name:"Crib for Baby Cradle With Mosquito Net Adjustable Foldable",color:"Dark Grey (Wood Grain)",price:"₱3,779",qty:1,priority:"nice",img:"https://i.imgur.com/MFsZs7k.jpg"},
+  {id:"5",name:"Baby Stroller Liner Pad Seat Cover — Gray Cross",color:"Gray Cross",price:"₱380",qty:1,priority:"must",img:"https://i.imgur.com/gptflT4.jpg"},
+  {id:"6",name:"Baby Stroller Liner Pad Seat Cover — Grey Star",color:"Grey Star",price:"₱380",qty:1,priority:"must",img:"https://i.imgur.com/vVp99Wq.jpg"},
+  {id:"7",name:"Starter Set Newborn Baby Clothes w/ Pillows Set",color:"White Starter",price:"₱470",qty:1,priority:"must",img:"https://i.imgur.com/IfSqiQg.jpg"},
+  {id:"8",name:"Moose Gear Baby Premium Pure Water Wipes 600s (6 Packs)",color:"",price:"₱541 × 2",qty:2,priority:"must",img:"https://i.imgur.com/WI7wssT.jpg"},
+  {id:"9",name:"Moose Gear Baby Tape Diaper Newborn 60pcs (2 Packs)",color:"",price:"₱506 × 2",qty:2,priority:"must",img:"https://i.imgur.com/4n4Wq1B.jpg"},
+  {id:"10",name:"8pcs Newborn Set — Gray Safari",color:"Gray Safari",price:"₱344",qty:1,priority:"nice",img:"https://i.imgur.com/GKqkqs4.jpg"},
+  {id:"11",name:"8pcs Newborn Set — Navy Rocket",color:"Navy Rocket",price:"₱344",qty:1,priority:"nice",img:"https://i.imgur.com/KoBwTs5.jpg"},
+  {id:"12",name:"Baby Swaddle Wrap — Starmoon",color:"Starmoon",price:"₱169",qty:1,priority:"nice",img:"https://i.imgur.com/qCpTqsp.jpg"},
+  {id:"13",name:"Baby Swaddle Wrap — Blue",color:"Blue",price:"₱169",qty:1,priority:"nice",img:"https://i.imgur.com/ib6Bjd2.jpg"},
+  {id:"14",name:"Momcozy Breast Pump S12 Pro",color:"White, Single",price:"₱3,847",qty:1,priority:"must",img:"https://i.imgur.com/QCwwk8b.jpg"},
+];
+
+let claimed={}, messages=[], currentTab='registry';
+
+// Auth
+window.doLogin=function(){
+  const p=document.getElementById('passInput').value;
+  if(p===ADMIN_PASS){
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    initFirestore();
+  } else {
+    document.getElementById('loginErr').style.display='block';
+  }
+};
+window.doLogout=function(){
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('passInput').value='';
+};
+
+function initFirestore(){
+  onSnapshot(collection(db,'claims'),snap=>{
+    claimed={};
+    snap.forEach(d=>claimed[d.id]=d.data());
+    updateStats();
+    renderRegistry();
+    renderClaims();
+  });
+  const q=query(collection(db,'messages'),orderBy('createdAt','desc'));
+  onSnapshot(q,snap=>{
+    messages=snap.docs.map(d=>({id:d.id,...d.data()}));
+    updateStats();
+    renderMessages();
+  });
+}
+
+function updateStats(){
+  const c=Object.keys(claimed).length;
+  document.getElementById('statTotal').textContent=gifts.length;
+  document.getElementById('statClaimed').textContent=c;
+  document.getElementById('statAvail').textContent=gifts.length-c;
+  document.getElementById('statMsgs').textContent=messages.length;
+}
+
+window.switchTab=function(tab){
+  currentTab=tab;
+  ['registry','claims','messages'].forEach(t=>{
+    document.getElementById(`tab-${t}`).classList.toggle('section-hidden',t!==tab);
+  });
+  document.querySelectorAll('.tab').forEach((el,i)=>{
+    el.classList.toggle('active',['registry','claims','messages'][i]===tab);
+  });
+};
+
+window.renderRegistry=function(){
+  const q=(document.getElementById('searchRegistry').value||'').toLowerCase();
+  const filtered=gifts.filter(g=>g.name.toLowerCase().includes(q)||g.color.toLowerCase().includes(q));
+  const el=document.getElementById('registryTable');
+  if(!filtered.length){el.innerHTML='<table><tr class="empty-row"><td colspan="6">No items found.</td></tr></table>';return;}
+  el.innerHTML=`<table>
+    <thead><tr>
+      <th>Item</th><th>Color</th><th>Price</th><th>Priority</th><th>Status</th><th>Action</th>
+    </tr></thead>
+    <tbody>${filtered.map(g=>{
+      const c=claimed[g.id];
+      return`<tr>
+        <td><div style="display:flex;align-items:center;gap:10px">
+          <img class="item-thumb-sm" src="${g.img}" alt="${g.name}" onerror="this.style.display='none'">
+          <span style="font-weight:600;color:var(--brown-dark);max-width:260px;display:block">${g.name}</span>
+        </div></td>
+        <td style="color:var(--text-light)">${g.color||'—'}</td>
+        <td style="font-weight:700">${g.price}</td>
+        <td><span class="badge badge-${g.priority}">${g.priority==='must'?'Must Have':'Nice to Have'}</span></td>
+        <td><span class="badge ${c?'badge-claimed':'badge-available'}">${c?'Claimed':'Available'}</span></td>
+        <td>${c?`<button class="btn-unclaim" onclick="unclaimItem('${g.id}','${g.name.replace(/'/g,"\\'")}')">Re-list</button>`:'—'}</td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table>`;
+};
+
+window.renderClaims=function(){
+  const q=(document.getElementById('searchClaims').value||'').toLowerCase();
+  const claimedGifts=gifts.filter(g=>claimed[g.id]);
+  const filtered=claimedGifts.filter(g=>{
+    const c=claimed[g.id];
+    return g.name.toLowerCase().includes(q)||(c.name||'').toLowerCase().includes(q)||(c.contact||'').includes(q);
+  });
+  const el=document.getElementById('claimsTable');
+  if(!filtered.length){el.innerHTML='<table><tr class="empty-row"><td colspan="6">No claimed items yet.</td></tr></table>';return;}
+  el.innerHTML=`<table>
+    <thead><tr>
+      <th>Item</th><th>Claimed By</th><th>Contact</th><th>Message</th><th>Date</th><th>Action</th>
+    </tr></thead>
+    <tbody>${filtered.map(g=>{
+      const c=claimed[g.id];
+      const date=c.createdAt?.toDate?.().toLocaleDateString('en-PH',{year:'numeric',month:'short',day:'numeric'})||'—';
+      return`<tr>
+        <td><div style="display:flex;align-items:center;gap:10px">
+          <img class="item-thumb-sm" src="${g.img}" alt="${g.name}" onerror="this.style.display='none'">
+          <span style="font-weight:600;color:var(--brown-dark);max-width:200px;display:block">${g.name}</span>
+        </div></td>
+        <td style="font-weight:600">${c.name||'—'}</td>
+        <td>${c.contact||'—'}</td>
+        <td style="color:var(--text-light);max-width:180px">${c.msg||<span style="color:var(--gray);font-style:italic">No message</span>}</td>
+        <td style="white-space:nowrap;color:var(--gray)">${date}</td>
+        <td><button class="btn-unclaim" onclick="unclaimItem('${g.id}','${g.name.replace(/'/g,"\\'")}')">Re-list</button></td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table>`;
+};
+
+window.renderMessages=function(){
+  const q=(document.getElementById('searchMsgs').value||'').toLowerCase();
+  const filtered=messages.filter(m=>(m.name||'').toLowerCase().includes(q)||(m.text||'').toLowerCase().includes(q)||(m.contact||'').includes(q));
+  const el=document.getElementById('msgsTable');
+  if(!filtered.length){el.innerHTML='<table><tr class="empty-row"><td colspan="5">No messages yet.</td></tr></table>';return;}
+  el.innerHTML=`<table>
+    <thead><tr><th>Name</th><th>Contact</th><th>Message</th><th>Date</th><th>Action</th></tr></thead>
+    <tbody>${filtered.map(m=>{
+      const date=m.createdAt?.toDate?.().toLocaleDateString('en-PH',{year:'numeric',month:'short',day:'numeric'})||'—';
+      return`<tr>
+        <td style="font-weight:600;color:var(--brown-dark)">${m.name||'—'}</td>
+        <td>${m.contact||'—'}</td>
+        <td style="color:var(--text-light);max-width:300px">${m.text||'—'}</td>
+        <td style="white-space:nowrap;color:var(--gray)">${date}</td>
+        <td><button class="btn-delete" onclick="deleteMsg('${m.id}')">Delete</button></td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table>`;
+};
+
+window.unclaimItem=async function(id,name){
+  if(!confirm(`Re-list "${name}"? The claim will be removed.`))return;
+  await deleteDoc(doc(db,'claims',id));
+  showToast(`"${name.substring(0,30)}…" re-listed ✓`);
+};
+
+window.deleteMsg=async function(id){
+  if(!confirm('Delete this message? This cannot be undone.'))return;
+  await deleteDoc(doc(db,'messages',id));
+  showToast('Message deleted ✓');
+};
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+</script>
+</body>
+</html>
