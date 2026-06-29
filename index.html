@@ -236,7 +236,7 @@
       <div class="wallet-header gcash-header"><span style="font-size:1.3rem">💙</span><span class="wallet-name">GCash</span></div>
       <div class="wallet-body">
         <div class="qr-box">
-          <img class="qr-img" src="https://drive.google.com/uc?export=view&id=1PYPdPS_9zpTrbmuyxANTKs9hzI1GrXyF" alt="GCash QR"/>
+          <img class="qr-img" src="https://i.imgur.com/lCwh7Ae.jpg" alt="GCash QR"/>
           <p class="qr-note">📱 Open GCash → Scan QR</p>
         </div>
         <div class="wallet-details">
@@ -250,7 +250,7 @@
       <div class="wallet-header gotyme-header"><span style="font-size:1.3rem">🟢</span><span class="wallet-name">GoTyme Bank</span></div>
       <div class="wallet-body">
         <div class="qr-box">
-          <img class="qr-img" src="https://drive.google.com/uc?export=view&id=1V-3jOXXK9RH0V5ruhf-DHn9EcF9XuedC" alt="GoTyme QR"/>
+          <img class="qr-img" src="https://i.imgur.com/rM2LLnP.jpg" alt="GoTyme QR"/>
           <p class="qr-note">📱 Open GoTyme → Scan QR</p>
         </div>
         <div class="wallet-details">
@@ -352,23 +352,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-function driveImg(id){return`https://drive.google.com/uc?export=view&id=${id}`;}
+function driveImg(url){return url;}
 
 const gifts=[
-  {id:"1",name:"Baby 1st Sierra Lightweight One Hand Foldable Stroller",color:"Black",price:"₱2,599",qty:1,priority:"must",link:"https://s.shopee.ph/2VpfWKA1gW",imgId:"1Xv5uwQW4hkaxYeUn-ga9qmZFvTJjMDzj"},
-  {id:"2",name:"Luna Baby Car Seat (With ICC Certificate)",color:"Grey",price:"₱2,999",qty:1,priority:"must",link:"https://s.shopee.ph/4LHJhm2GSe",imgId:"1nbLZmm5raokwt7DLKhnRLbZ-nWRCCDBF"},
-  {id:"3",name:"Orashare OCF01Pro Stroller Fan 4000mAh Rechargeable",color:"Rock White",price:"₱719",qty:1,priority:"must",link:"https://s.shopee.ph/40eTJEVCfg",imgId:"1_ac4iXlLGA3VspD6n31_066TTMcslBDR"},
-  {id:"4",name:"Crib for Baby Cradle With Mosquito Net Adjustable Foldable",color:"Dark Grey (Wood Grain)",price:"₱3,779",qty:1,priority:"nice",link:"https://s.shopee.ph/qhRXRmhrm",imgId:"1tC4M6KnN-isuIcyaaKUiIDVX0nbHNoJZ"},
-  {id:"5",name:"Baby Stroller Liner Pad Seat Cover — Gray Cross",color:"Gray Cross",price:"₱380",qty:1,priority:"must",link:"https://s.shopee.ph/3ViCiPUc9U",imgId:"1_I71oZ5kC_LKcXqaFDwwWfae9EZQWL0o"},
-  {id:"6",name:"Baby Stroller Liner Pad Seat Cover — Grey Star",color:"Grey Star",price:"₱380",qty:1,priority:"must",link:"https://s.shopee.ph/3ViCiPUc9U",imgId:"1r6pijhE6GEIbIL4MG4yTNjxixPz7Qo4D"},
-  {id:"7",name:"Starter Set Newborn Baby Clothes w/ Pillows Set",color:"White Starter",price:"₱470",qty:1,priority:"must",link:"https://s.shopee.ph/5VTIFUMw3E",imgId:"1tP8KFgqrFA1dGqysVhGD2rQS5d_ic8Js"},
-  {id:"8",name:"Moose Gear Baby Premium Pure Water Wipes 600s (6 Packs)",color:"",price:"₱541 × 2",qty:2,priority:"must",link:"https://s.shopee.ph/2qSX6bKxBw",imgId:"17bgAcI3CVlJ9SNG46m8_RDb_NREqd3ME"},
-  {id:"9",name:"Moose Gear Baby Tape Diaper Newborn 60pcs (2 Packs)",color:"",price:"₱506 × 2",qty:2,priority:"must",link:"https://s.shopee.ph/8KnTf2DSDo",imgId:"1m6iqPsmAYhyyY8Gb2uVDaoWCR7IF7NPk"},
-  {id:"10",name:"8pcs Newborn Set — Blanket, Mittens, Booties, Bonnet, Shortsleeve, Pajama",color:"Gray Safari",price:"₱344",qty:1,priority:"nice",link:"https://s.shopee.ph/9UzR3SCJth",imgId:"1aCz79j88V1gVRsXk8zGHxMcE3o3IieHJ"},
-  {id:"11",name:"8pcs Newborn Set — Blanket, Mittens, Booties, Bonnet, Shortsleeve, Pajama",color:"Navy Rocket",price:"₱344",qty:1,priority:"nice",link:"https://s.shopee.ph/9UzR3SCJth",imgId:"1tJIHnS_kIYYcoNnsbM3m64DQlP-9ydIl"},
-  {id:"12",name:"Baby Swaddle Wrap + Infant Sleeping Sack 100% Cotton Anti-Rash",color:"Starmoon",price:"₱169",qty:1,priority:"nice",link:"https://s.shopee.ph/6pyftazaGG",imgId:"1IvOjAbjlfNTQPyMP7jc8pM_sKK1d_Nkt"},
-  {id:"13",name:"Baby Swaddle Wrap + Infant Sleeping Sack 100% Cotton Anti-Rash",color:"Blue",price:"₱169",qty:1,priority:"nice",link:"https://s.shopee.ph/6pyftazaGG",imgId:"1g5Xshj_CBVXtMUJ6b30zzYQdXOJ3fK2h"},
-  {id:"14",name:"Momcozy Breast Pump S12 Pro Hands-Free Wearable & Wireless",color:"White, Single",price:"₱3,847",qty:1,priority:"must",link:"https://s.shopee.ph/AAF7s0yFkv",imgId:"1j6xXvxtU7zQny8cswufBMP11MLOshE67"},
+  {id:"1",name:"Baby 1st Sierra Lightweight One Hand Foldable Stroller",color:"Black",price:"₱2,599",qty:1,priority:"must",link:"https://s.shopee.ph/2VpfWKA1gW",img:"https://i.imgur.com/87AEAgN.jpg"},
+  {id:"2",name:"Luna Baby Car Seat (With ICC Certificate)",color:"Grey",price:"₱2,999",qty:1,priority:"must",link:"https://s.shopee.ph/4LHJhm2GSe",img:"https://i.imgur.com/ewZdRTq.jpg"},
+  {id:"3",name:"Orashare OCF01Pro Stroller Fan 4000mAh Rechargeable",color:"Rock White",price:"₱719",qty:1,priority:"must",link:"https://s.shopee.ph/40eTJEVCfg",img:"https://i.imgur.com/GOy4VBI.jpg"},
+  {id:"4",name:"Crib for Baby Cradle With Mosquito Net Adjustable Foldable",color:"Dark Grey (Wood Grain)",price:"₱3,779",qty:1,priority:"nice",link:"https://s.shopee.ph/qhRXRmhrm",img:"https://i.imgur.com/MFsZs7k.jpg"},
+  {id:"5",name:"Baby Stroller Liner Pad Seat Cover — Gray Cross",color:"Gray Cross",price:"₱380",qty:1,priority:"must",link:"https://s.shopee.ph/3ViCiPUc9U",img:"https://i.imgur.com/gptflT4.jpg"},
+  {id:"6",name:"Baby Stroller Liner Pad Seat Cover — Grey Star",color:"Grey Star",price:"₱380",qty:1,priority:"must",link:"https://s.shopee.ph/3ViCiPUc9U",img:"https://i.imgur.com/vVp99Wq.jpg"},
+  {id:"7",name:"Starter Set Newborn Baby Clothes w/ Pillows Set",color:"White Starter",price:"₱470",qty:1,priority:"must",link:"https://s.shopee.ph/5VTIFUMw3E",img:"https://i.imgur.com/IfSqiQg.jpg"},
+  {id:"8",name:"Moose Gear Baby Premium Pure Water Wipes 600s (6 Packs)",color:"",price:"₱541 × 2",qty:2,priority:"must",link:"https://s.shopee.ph/2qSX6bKxBw",img:"https://i.imgur.com/WI7wssT.jpg"},
+  {id:"9",name:"Moose Gear Baby Tape Diaper Newborn 60pcs (2 Packs)",color:"",price:"₱506 × 2",qty:2,priority:"must",link:"https://s.shopee.ph/8KnTf2DSDo",img:"https://i.imgur.com/4n4Wq1B.jpg"},
+  {id:"10",name:"8pcs Newborn Set — Blanket, Mittens, Booties, Bonnet, Shortsleeve, Pajama",color:"Gray Safari",price:"₱344",qty:1,priority:"nice",link:"https://s.shopee.ph/9UzR3SCJth",img:"https://i.imgur.com/GKqkqs4.jpg"},
+  {id:"11",name:"8pcs Newborn Set — Blanket, Mittens, Booties, Bonnet, Shortsleeve, Pajama",color:"Navy Rocket",price:"₱344",qty:1,priority:"nice",link:"https://s.shopee.ph/9UzR3SCJth",img:"https://i.imgur.com/KoBwTs5.jpg"},
+  {id:"12",name:"Baby Swaddle Wrap + Infant Sleeping Sack 100% Cotton Anti-Rash",color:"Starmoon",price:"₱169",qty:1,priority:"nice",link:"https://s.shopee.ph/6pyftazaGG",img:"https://i.imgur.com/qCpTqsp.jpg"},
+  {id:"13",name:"Baby Swaddle Wrap + Infant Sleeping Sack 100% Cotton Anti-Rash",color:"Blue",price:"₱169",qty:1,priority:"nice",link:"https://s.shopee.ph/6pyftazaGG",img:"https://i.imgur.com/ib6Bjd2.jpg"},
+  {id:"14",name:"Momcozy Breast Pump S12 Pro Hands-Free Wearable & Wireless",color:"White, Single",price:"₱3,847",qty:1,priority:"must",link:"https://s.shopee.ph/AAF7s0yFkv",img:"https://i.imgur.com/QCwwk8b.jpg"},
 ];
 
 const pLabel={must:"Must Have",nice:"Nice to Have"};
@@ -405,7 +405,7 @@ function renderGifts(){
     const c=claimed[g.id];
     return`<div class="item-card${c?' is-claimed':''}">
       <div class="item-thumb-wrap">
-        <img class="item-thumb" src="${driveImg(g.imgId)}" alt="${g.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img class="item-thumb" src="${g.img}" alt="${g.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="item-thumb" style="display:none">🛍️</div>
         ${c?'<div class="claimed-ribbon">Claimed ✓</div>':''}
       </div>
