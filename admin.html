@@ -20,9 +20,9 @@
   .login-card{background:var(--white);border-radius:20px;padding:40px 36px;max-width:380px;width:92%;box-shadow:0 8px 40px #0002;text-align:center}
   .login-card h1{font-family:'Georgia',serif;font-size:1.5rem;color:var(--brown-dark);margin-bottom:6px}
   .login-card p{font-size:.85rem;color:var(--text-light);margin-bottom:24px}
-  .login-card input{width:100%;border:1.5px solid var(--gray-mid);border-radius:10px;padding:12px 16px;font-size:.95rem;color:var(--text);outline:none;background:var(--beige);margin-bottom:14px;transition:border .2s}
+  .login-card input{width:100%;border:1.5px solid var(--gray-mid);border-radius:10px;padding:12px 16px;font-size:.95rem;outline:none;background:var(--beige);margin-bottom:14px;transition:border .2s}
   .login-card input:focus{border-color:var(--blue-mid);background:var(--white)}
-  .btn-login{width:100%;background:var(--brown-dark);color:var(--white);border:none;border-radius:10px;padding:12px;font-size:.95rem;cursor:pointer;font-weight:600;transition:background .2s}
+  .btn-login{width:100%;background:var(--brown-dark);color:var(--white);border:none;border-radius:10px;padding:12px;font-size:.95rem;cursor:pointer;font-weight:600}
   .btn-login:hover{background:var(--brown)}
   .login-err{font-size:.8rem;color:var(--red);margin-top:10px;display:none}
   .dashboard{display:none}
@@ -33,13 +33,14 @@
   .btn-logout{background:transparent;border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:8px;padding:5px 14px;font-size:.78rem;cursor:pointer}
   .btn-logout:hover{background:rgba(255,255,255,.1)}
   .content{max-width:1100px;margin:0 auto;padding:32px 24px}
-  .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-bottom:32px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:32px}
   .stat-card{background:var(--white);border-radius:14px;padding:20px;box-shadow:0 2px 12px #0001;border-top:3px solid var(--blue-mid)}
   .stat-card.green{border-color:var(--green)}
   .stat-card.red{border-color:var(--red)}
   .stat-card.beige{border-color:var(--beige-dark)}
+  .stat-card.purple{border-color:#9b59b6}
   .stat-num{font-size:2rem;font-weight:700;color:var(--brown-dark);font-family:'Georgia',serif}
-  .stat-label{font-size:.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+  .stat-label{font-size:.72rem;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
   .tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
   .tab{background:var(--white);border:1.5px solid var(--gray-mid);border-radius:10px;padding:8px 20px;font-size:.85rem;color:var(--text-light);cursor:pointer;font-weight:600;transition:all .2s}
   .tab.active{background:var(--brown-dark);color:var(--white);border-color:var(--brown-dark)}
@@ -68,10 +69,44 @@
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--brown-dark);color:#fff;padding:12px 24px;border-radius:30px;font-size:.85rem;opacity:0;transition:opacity .3s;pointer-events:none;z-index:300;white-space:nowrap}
   .toast.show{opacity:1}
   .item-name-cell{font-weight:600;color:var(--brown-dark);max-width:220px;display:block;line-height:1.3}
+
+  /* GALLERY ADMIN */
+  .gallery-admin{padding:20px}
+  .gallery-admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+  .gallery-admin-card{background:var(--beige);border-radius:14px;overflow:hidden;position:relative;box-shadow:0 2px 10px #0001}
+  .gallery-admin-card img{width:100%;height:150px;object-fit:cover;display:block}
+  .gallery-admin-info{padding:10px 12px}
+  .gallery-admin-info p{font-size:.82rem;color:var(--brown-dark);font-weight:600;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gallery-admin-info span{font-size:.72rem;color:var(--gray)}
+  .btn-del-photo{position:absolute;top:8px;right:8px;background:var(--red);color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+  .gallery-admin-card:hover .btn-del-photo{opacity:1}
+
+  /* UPLOAD AREA */
+  .upload-section{border:2px dashed var(--blue-mid);border-radius:16px;padding:28px;text-align:center;background:var(--blue-light);transition:background .2s;cursor:pointer}
+  .upload-section:hover,.upload-section.dragover{background:#c8e4f5}
+  .upload-icon{font-size:2.5rem;margin-bottom:10px}
+  .upload-section h3{font-size:1rem;color:var(--brown-dark);margin-bottom:6px}
+  .upload-section p{font-size:.82rem;color:var(--text-light);margin-bottom:16px}
+  .upload-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;text-align:left}
+  .upload-fields input{width:100%;border:1.5px solid var(--gray-mid);border-radius:10px;padding:9px 12px;font-size:.85rem;outline:none;background:var(--white);transition:border .2s}
+  .upload-fields input:focus{border-color:var(--blue-mid)}
+  .file-input-wrap{position:relative;margin-bottom:14px}
+  .file-input-wrap input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+  .file-label{display:block;background:var(--white);border:1.5px solid var(--blue-mid);border-radius:10px;padding:10px 16px;font-size:.85rem;color:var(--blue);font-weight:600;cursor:pointer;text-align:center}
+  .file-preview{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:12px;display:none}
+  .btn-upload{background:var(--brown-dark);color:#fff;border:none;border-radius:10px;padding:10px 28px;font-size:.88rem;cursor:pointer;font-weight:600;width:100%;transition:background .2s}
+  .btn-upload:hover{background:var(--brown)}
+  .btn-upload:disabled{opacity:.5;cursor:not-allowed}
+  .upload-progress{height:6px;background:var(--gray-light);border-radius:10px;margin-top:12px;overflow:hidden;display:none}
+  .upload-progress-fill{height:100%;background:linear-gradient(90deg,var(--blue-mid),var(--blue));border-radius:10px;width:0%;transition:width .3s}
+  .upload-note{font-size:.75rem;color:var(--text-light);margin-top:10px;font-style:italic}
+
   @media(max-width:600px){
     .stats{grid-template-columns:1fr 1fr}
     td,th{padding:8px 10px;font-size:.78rem}
     .search-input{width:130px}
+    .upload-fields{grid-template-columns:1fr}
+    .gallery-admin-grid{grid-template-columns:1fr 1fr}
   }
 </style>
 </head>
@@ -100,12 +135,16 @@
       <div class="stat-card green"><div class="stat-num" id="statClaimed">—</div><div class="stat-label">Claimed</div></div>
       <div class="stat-card beige"><div class="stat-num" id="statAvail">—</div><div class="stat-label">Available</div></div>
       <div class="stat-card red"><div class="stat-num" id="statMsgs">—</div><div class="stat-label">Messages</div></div>
+      <div class="stat-card purple"><div class="stat-num" id="statPhotos">—</div><div class="stat-label">Gallery Photos</div></div>
     </div>
     <div class="tabs">
       <div class="tab active" id="tab-btn-registry">🎁 Registry</div>
       <div class="tab" id="tab-btn-claims">✅ Claims</div>
       <div class="tab" id="tab-btn-messages">💌 Messages</div>
+      <div class="tab" id="tab-btn-gallery">📸 Gallery</div>
     </div>
+
+    <!-- REGISTRY -->
     <div id="tab-registry" class="table-wrap">
       <div class="table-toolbar">
         <h2>All Registry Items</h2>
@@ -113,6 +152,8 @@
       </div>
       <div id="registryTable"><div class="empty-state">Loading…</div></div>
     </div>
+
+    <!-- CLAIMS -->
     <div id="tab-claims" class="table-wrap hidden">
       <div class="table-toolbar">
         <h2>Claimed Items</h2>
@@ -120,12 +161,48 @@
       </div>
       <div id="claimsTable"><div class="empty-state">Loading…</div></div>
     </div>
+
+    <!-- MESSAGES -->
     <div id="tab-messages" class="table-wrap hidden">
       <div class="table-toolbar">
         <h2>Messages for Baby Cruzate</h2>
         <input class="search-input" id="searchMsgs" type="text" placeholder="Search…"/>
       </div>
       <div id="msgsTable"><div class="empty-state">Loading…</div></div>
+    </div>
+
+    <!-- GALLERY -->
+    <div id="tab-gallery" class="table-wrap hidden">
+      <div class="table-toolbar"><h2>Gallery Manager</h2></div>
+      <div class="gallery-admin" id="galleryAdmin">
+
+        <!-- UPLOAD -->
+        <div class="upload-section" id="uploadSection">
+          <div class="upload-icon">📷</div>
+          <h3>Add a Photo to the Gallery</h3>
+          <p>Upload directly — it will appear on the registry page instantly.</p>
+          <div class="upload-fields">
+            <input type="text" id="photoTitle" placeholder="Photo title e.g. 22 Weeks Scan"/>
+            <input type="text" id="photoCaption" placeholder="Caption e.g. Cure Health Clinic"/>
+          </div>
+          <div class="file-input-wrap">
+            <div class="file-label" id="fileLabel">📁 Choose a photo…</div>
+            <input type="file" id="fileInput" accept="image/*"/>
+          </div>
+          <img id="filePreview" class="file-preview" alt="Preview"/>
+          <button class="btn-upload" id="uploadBtn" disabled>Upload to Gallery</button>
+          <div class="upload-progress" id="uploadProgress">
+            <div class="upload-progress-fill" id="uploadProgressFill"></div>
+          </div>
+          <p class="upload-note">💙 Photos are stored in Firebase Storage and appear on the registry instantly. Max size: 5MB.</p>
+        </div>
+
+        <!-- EXISTING PHOTOS -->
+        <h3 style="font-size:.9rem;color:var(--brown-dark);margin:24px 0 14px;font-family:'Georgia',serif">Current Gallery Photos</h3>
+        <div class="gallery-admin-grid" id="galleryGrid">
+          <div class="empty-state" style="grid-column:1/-1">Loading photos…</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -134,7 +211,8 @@
 
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import{getFirestore,collection,doc,deleteDoc,onSnapshot,query,orderBy}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import{getFirestore,collection,doc,deleteDoc,addDoc,onSnapshot,query,orderBy,serverTimestamp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import{getStorage,ref,uploadBytesResumable,getDownloadURL,deleteObject}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
 const PASS="cruzate2026";
 const firebaseConfig={
@@ -147,6 +225,7 @@ const firebaseConfig={
 };
 const app=initializeApp(firebaseConfig,"admin");
 const db=getFirestore(app);
+const storage=getStorage(app);
 
 const gifts=[
   {id:"1",name:"Baby 1st Sierra Lightweight One Hand Foldable Stroller",color:"Black",price:"₱2,599",qty:1,priority:"must",img:"https://i.imgur.com/87AEAgN.jpg"},
@@ -165,19 +244,18 @@ const gifts=[
   {id:"14",name:"Momcozy Breast Pump S12 Pro",color:"White Single",price:"₱3,847",qty:1,priority:"must",img:"https://i.imgur.com/QCwwk8b.jpg"},
 ];
 
-let claimed={}, msgs=[], currentTab="registry";
+let claimed={},msgs=[],photos=[];
 
-// ── AUTH ──────────────────────────────────────────────────
-document.getElementById("loginBtn").addEventListener("click", tryLogin);
-document.getElementById("passInput").addEventListener("keydown", e=>{if(e.key==="Enter")tryLogin();});
-document.getElementById("logoutBtn").addEventListener("click", logout);
+// ── AUTH ─────────────────────────────────────────────────
+document.getElementById("loginBtn").addEventListener("click",tryLogin);
+document.getElementById("passInput").addEventListener("keydown",e=>{if(e.key==="Enter")tryLogin();});
+document.getElementById("logoutBtn").addEventListener("click",logout);
 
 function tryLogin(){
-  const val=document.getElementById("passInput").value;
-  if(val===PASS){
+  if(document.getElementById("passInput").value===PASS){
     document.getElementById("loginScreen").style.display="none";
-    document.getElementById("dashboard").classList.remove("hidden");
     document.getElementById("dashboard").style.display="block";
+    document.getElementById("dashboard").classList.remove("hidden");
     startListeners();
   } else {
     document.getElementById("loginErr").style.display="block";
@@ -189,21 +267,24 @@ function logout(){
   document.getElementById("passInput").value="";
 }
 
-// ── FIREBASE LISTENERS ────────────────────────────────────
+// ── LISTENERS ────────────────────────────────────────────
 function startListeners(){
   onSnapshot(collection(db,"claims"),snap=>{
-    claimed={};
-    snap.forEach(d=>claimed[d.id]=d.data());
+    claimed={};snap.forEach(d=>claimed[d.id]=d.data());
     updateStats();renderRegistry();renderClaims();
   });
   onSnapshot(query(collection(db,"messages"),orderBy("createdAt","desc")),snap=>{
     msgs=snap.docs.map(d=>({id:d.id,...d.data()}));
     updateStats();renderMessages();
   });
+  onSnapshot(query(collection(db,"gallery"),orderBy("createdAt","desc")),snap=>{
+    photos=snap.docs.map(d=>({id:d.id,...d.data()}));
+    updateStats();renderGalleryAdmin();
+  });
 }
 
-// ── TABS ──────────────────────────────────────────────────
-["registry","claims","messages"].forEach(t=>{
+// ── TABS ─────────────────────────────────────────────────
+["registry","claims","messages","gallery"].forEach(t=>{
   document.getElementById("tab-btn-"+t).addEventListener("click",()=>switchTab(t));
 });
 document.getElementById("searchRegistry").addEventListener("input",renderRegistry);
@@ -211,23 +292,23 @@ document.getElementById("searchClaims").addEventListener("input",renderClaims);
 document.getElementById("searchMsgs").addEventListener("input",renderMessages);
 
 function switchTab(tab){
-  currentTab=tab;
-  ["registry","claims","messages"].forEach(t=>{
+  ["registry","claims","messages","gallery"].forEach(t=>{
     document.getElementById("tab-"+t).classList.toggle("hidden",t!==tab);
     document.getElementById("tab-btn-"+t).classList.toggle("active",t===tab);
   });
 }
 
-// ── STATS ─────────────────────────────────────────────────
+// ── STATS ────────────────────────────────────────────────
 function updateStats(){
   const c=Object.keys(claimed).length;
   document.getElementById("statTotal").textContent=gifts.length;
   document.getElementById("statClaimed").textContent=c;
   document.getElementById("statAvail").textContent=gifts.length-c;
   document.getElementById("statMsgs").textContent=msgs.length;
+  document.getElementById("statPhotos").textContent=photos.length;
 }
 
-// ── REGISTRY TAB ──────────────────────────────────────────
+// ── REGISTRY ─────────────────────────────────────────────
 function renderRegistry(){
   const q=(document.getElementById("searchRegistry").value||"").toLowerCase();
   const list=gifts.filter(g=>g.name.toLowerCase().includes(q)||g.color.toLowerCase().includes(q));
@@ -239,16 +320,14 @@ function renderRegistry(){
     const status=c?'<span class="badge badge-claimed">Claimed</span>':'<span class="badge badge-available">Available</span>';
     const action=c?'<button class="btn-unclaim" data-id="'+g.id+'" data-name="'+encodeURIComponent(g.name)+'">Re-list</button>':'—';
     const priority=g.priority==='must'?'<span class="badge badge-must">Must Have</span>':'<span class="badge badge-nice">Nice to Have</span>';
-    html+='<tr><td><div style="display:flex;align-items:center;gap:10px"><img class="item-thumb-sm" src="'+g.img+'" onerror="this.style.display=\'none\'"><span class="item-name-cell">'+g.name+'</span></div></td><td>'+( g.color||'—')+'</td><td style="font-weight:700">'+g.price+'</td><td>'+priority+'</td><td>'+status+'</td><td>'+action+'</td></tr>';
+    html+='<tr><td><div style="display:flex;align-items:center;gap:10px"><img class="item-thumb-sm" src="'+g.img+'" onerror="this.style.display=\'none\'"><span class="item-name-cell">'+g.name+'</span></div></td><td>'+(g.color||'—')+'</td><td style="font-weight:700">'+g.price+'</td><td>'+priority+'</td><td>'+status+'</td><td>'+action+'</td></tr>';
   });
   html+='</tbody></table>';
   el.innerHTML=html;
-  el.querySelectorAll(".btn-unclaim").forEach(btn=>{
-    btn.addEventListener("click",()=>unclaimItem(btn.dataset.id,decodeURIComponent(btn.dataset.name)));
-  });
+  el.querySelectorAll(".btn-unclaim").forEach(btn=>btn.addEventListener("click",()=>unclaimItem(btn.dataset.id,decodeURIComponent(btn.dataset.name))));
 }
 
-// ── CLAIMS TAB ────────────────────────────────────────────
+// ── CLAIMS ───────────────────────────────────────────────
 function renderClaims(){
   const q=(document.getElementById("searchClaims").value||"").toLowerCase();
   const list=gifts.filter(g=>claimed[g.id]).filter(g=>{
@@ -261,17 +340,14 @@ function renderClaims(){
   list.forEach(g=>{
     const c=claimed[g.id];
     const date=c.createdAt&&c.createdAt.toDate?c.createdAt.toDate().toLocaleDateString("en-PH",{year:"numeric",month:"short",day:"numeric"}):"—";
-    const msgText=c.msg?c.msg:'<em style="color:var(--gray)">No message</em>';
-    html+='<tr><td><div style="display:flex;align-items:center;gap:10px"><img class="item-thumb-sm" src="'+g.img+'" onerror="this.style.display=\'none\'"><span class="item-name-cell">'+g.name+'</span></div></td><td style="font-weight:600">'+( c.name||"—")+'</td><td>'+(c.contact||"—")+'</td><td style="color:var(--text-light);max-width:180px">'+msgText+'</td><td style="white-space:nowrap;color:var(--gray)">'+date+'</td><td><button class="btn-unclaim" data-id="'+g.id+'" data-name="'+encodeURIComponent(g.name)+'">Re-list</button></td></tr>';
+    html+='<tr><td><div style="display:flex;align-items:center;gap:10px"><img class="item-thumb-sm" src="'+g.img+'" onerror="this.style.display=\'none\'"><span class="item-name-cell">'+g.name+'</span></div></td><td style="font-weight:600">'+(c.name||"—")+'</td><td>'+(c.contact||"—")+'</td><td style="color:var(--text-light);max-width:180px">'+(c.msg||'<em style="color:var(--gray)">No message</em>')+'</td><td style="white-space:nowrap;color:var(--gray)">'+date+'</td><td><button class="btn-unclaim" data-id="'+g.id+'" data-name="'+encodeURIComponent(g.name)+'">Re-list</button></td></tr>';
   });
   html+='</tbody></table>';
   el.innerHTML=html;
-  el.querySelectorAll(".btn-unclaim").forEach(btn=>{
-    btn.addEventListener("click",()=>unclaimItem(btn.dataset.id,decodeURIComponent(btn.dataset.name)));
-  });
+  el.querySelectorAll(".btn-unclaim").forEach(btn=>btn.addEventListener("click",()=>unclaimItem(btn.dataset.id,decodeURIComponent(btn.dataset.name))));
 }
 
-// ── MESSAGES TAB ──────────────────────────────────────────
+// ── MESSAGES ─────────────────────────────────────────────
 function renderMessages(){
   const q=(document.getElementById("searchMsgs").value||"").toLowerCase();
   const list=msgs.filter(m=>(m.name||"").toLowerCase().includes(q)||(m.text||"").toLowerCase().includes(q)||(m.contact||"").includes(q));
@@ -284,12 +360,79 @@ function renderMessages(){
   });
   html+='</tbody></table>';
   el.innerHTML=html;
-  el.querySelectorAll(".btn-delete").forEach(btn=>{
-    btn.addEventListener("click",()=>deleteMsg(btn.dataset.id));
-  });
+  el.querySelectorAll(".btn-delete").forEach(btn=>btn.addEventListener("click",()=>deleteMsg(btn.dataset.id)));
 }
 
-// ── ACTIONS ───────────────────────────────────────────────
+// ── GALLERY ADMIN ────────────────────────────────────────
+function renderGalleryAdmin(){
+  const grid=document.getElementById("galleryGrid");
+  if(!photos.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1">No photos yet. Upload one above!</div>';return;}
+  grid.innerHTML=photos.map(p=>`
+    <div class="gallery-admin-card">
+      <img src="${p.url}" alt="${p.title}" onerror="this.style.background='var(--blue-light)'"/>
+      <button class="btn-del-photo" data-id="${p.id}" data-path="${p.storagePath}" title="Delete photo">✕</button>
+      <div class="gallery-admin-info">
+        <p>${p.title||'Untitled'}</p>
+        <span>${p.caption||''}</span>
+      </div>
+    </div>`).join('');
+  grid.querySelectorAll(".btn-del-photo").forEach(btn=>btn.addEventListener("click",()=>deletePhoto(btn.dataset.id,btn.dataset.path)));
+}
+
+// ── FILE UPLOAD ──────────────────────────────────────────
+const fileInput=document.getElementById("fileInput");
+const filePreview=document.getElementById("filePreview");
+const uploadBtn=document.getElementById("uploadBtn");
+const fileLabel=document.getElementById("fileLabel");
+
+fileInput.addEventListener("change",()=>{
+  const file=fileInput.files[0];
+  if(!file)return;
+  if(file.size>5*1024*1024){showToast("File too large. Max 5MB.");fileInput.value="";return;}
+  fileLabel.textContent="📎 "+file.name;
+  const reader=new FileReader();
+  reader.onload=e=>{filePreview.src=e.target.result;filePreview.style.display="block";};
+  reader.readAsDataURL(file);
+  uploadBtn.disabled=false;
+});
+
+uploadBtn.addEventListener("click",async()=>{
+  const file=fileInput.files[0];
+  const title=document.getElementById("photoTitle").value.trim()||"Photo";
+  const caption=document.getElementById("photoCaption").value.trim();
+  if(!file){showToast("Please choose a photo first.");return;}
+
+  uploadBtn.disabled=true;
+  const progressWrap=document.getElementById("uploadProgress");
+  const progressFill=document.getElementById("uploadProgressFill");
+  progressWrap.style.display="block";
+
+  const path="gallery/"+Date.now()+"_"+file.name.replace(/\s+/g,"_");
+  const storageRef=ref(storage,path);
+  const task=uploadBytesResumable(storageRef,file);
+
+  task.on("state_changed",
+    snap=>{
+      const pct=Math.round(snap.bytesTransferred/snap.totalBytes*100);
+      progressFill.style.width=pct+"%";
+    },
+    err=>{showToast("Upload failed: "+err.message);uploadBtn.disabled=false;progressWrap.style.display="none";},
+    async()=>{
+      const url=await getDownloadURL(task.snapshot.ref);
+      await addDoc(collection(db,"gallery"),{title,caption,url,storagePath:path,createdAt:serverTimestamp()});
+      showToast("Photo uploaded! 📸");
+      fileInput.value="";filePreview.style.display="none";
+      fileLabel.textContent="📁 Choose a photo…";
+      document.getElementById("photoTitle").value="";
+      document.getElementById("photoCaption").value="";
+      uploadBtn.disabled=true;
+      progressWrap.style.display="none";
+      progressFill.style.width="0%";
+    }
+  );
+});
+
+// ── ACTIONS ──────────────────────────────────────────────
 async function unclaimItem(id,name){
   if(!confirm('Re-list "'+name+'"? The claim will be removed.'))return;
   await deleteDoc(doc(db,"claims",id));
@@ -300,6 +443,13 @@ async function deleteMsg(id){
   await deleteDoc(doc(db,"messages",id));
   showToast("Message deleted.");
 }
+async function deletePhoto(id,path){
+  if(!confirm("Delete this photo from the gallery? This cannot be undone."))return;
+  try{await deleteObject(ref(storage,path));}catch(e){}
+  await deleteDoc(doc(db,"gallery",id));
+  showToast("Photo deleted.");
+}
+
 function showToast(msg){
   const t=document.getElementById("toast");
   t.textContent=msg;t.classList.add("show");
