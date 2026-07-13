@@ -148,9 +148,9 @@
   .countdown-wrap{margin:24px auto 0;max-width:500px}
   .countdown-label{font-size:.72rem;font-family:'Segoe UI',sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
   .countdown-grid{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-<div class="cd-box"><span class="cd-num" id="cd-months">—</span><span class="cd-unit">Months</span></div>
-<div class="cd-box"><span class="cd-num" id="cd-weeks">—</span><span class="cd-unit">Weeks</span></div>
-<div class="cd-box"><span class="cd-num" id="cd-days">—</span><span class="cd-unit">Days</span></div>
+  id="cd-months">—</span><span class="cd-unit">Months</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-weeks">—</span><span class="cd-unit">Weeks</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-days">—</span><span class="cd-unit">Days</span>
 
   /* PROGRESS BAR */
   .progress-wrap{background:var(--white);border-radius:14px;padding:16px 20px;box-shadow:0 2px 12px #0001;margin-bottom:24px}
@@ -586,33 +586,15 @@ function showToast(msg){
 }
 function updateCountdown(){
   const due=new Date('2026-10-12T00:00:00+08:00');
-  const diff=due-new Date();
-  const wEl=document.getElementById('cd-weeks');
-  const dEl=document.getElementById('cd-days');
-  if(!wEl||!dEl)return;
-  if(diff<=0){wEl.textContent='0';dEl.textContent='0';return;}
-  const totalDays=Math.floor(diff/86400000);
-  wEl.textContent=Math.floor(totalDays/7);
-  dEl.textContent=totalDays%7;
-}
-updateCountdown();
-setInterval(updateCountdown,60000);
-function updateCountdown(){
-  const due=new Date('2026-10-12T00:00:00+08:00');
-  const now=new Date();
-  const diff=due-now;
+  const totalDays=Math.floor((due-new Date())/86400000);
   const mEl=document.getElementById('cd-months');
   const wEl=document.getElementById('cd-weeks');
   const dEl=document.getElementById('cd-days');
-  if(!mEl||!wEl||!dEl)return;
-  if(diff<=0){mEl.textContent='0';wEl.textContent='0';dEl.textContent='0';return;}
-  const totalDays=Math.floor(diff/86400000);
-  const months=Math.floor(totalDays/30);
-  const weeks=Math.floor((totalDays%30)/7);
-  const days=totalDays%7;
-  mEl.textContent=months;
-  wEl.textContent=weeks;
-  dEl.textContent=days;
+  if(!mEl)return;
+  if(totalDays<=0){mEl.textContent=wEl.textContent=dEl.textContent='0';return;}
+  mEl.textContent=Math.floor(totalDays/30);
+  wEl.textContent=Math.floor((totalDays%30)/7);
+  dEl.textContent=totalDays%7;
 }
 updateCountdown();
 setInterval(updateCountdown,86400000);
